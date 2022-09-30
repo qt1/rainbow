@@ -1,0 +1,159 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "idf.py build",
+            "type": "shell",
+            "command": "idf.py",
+            "args": [
+                "-G",
+                "'Unix Makefiles'",
+                "build"
+            ],
+            "problemMatcher": {
+                "base": "$gcc",
+                "fileLocation": [
+                    "absolute",
+                    "${workspaceFolder}/build"
+                ]
+            },
+            "presentation": {
+                "panel": "new"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "idf.py flash",
+            "type": "shell",
+            "command": "idf.py",
+            "args": [
+                "-G",
+                "'Unix Makefiles'",
+                "flash"
+            ],
+            "problemMatcher": {
+                "base": "$gcc",
+                "fileLocation": [
+                    "absolute",
+                    "${workspaceFolder}/build"
+                ]
+            },
+            "presentation": {
+                "panel": "new"
+            },
+            "group": {
+                "kind": "build"
+            }
+        },
+        {
+            "type": "shell",
+            "label": "Build Project",
+            "command": "source /home/baruch/esp/esp-idf/export.sh && cmake --build build",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "problemMatcher": {
+                "base": "$gcc",
+                "fileLocation": [
+                    "relative",
+                    "${workspaceFolder}/build"
+                ]
+            }
+        },
+        {
+            "label": "make",
+            "type": "shell",
+            "command": "make",
+            "args": [
+                "-j"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "presentation": {
+                "panel": "new"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            }
+        },
+        {
+            "label": "run openOCD",
+            "type": "shell",
+            "command": "${env:IDF_PATH}/../openocd-esp32/bin/openocd",
+            "options": {
+                "cwd": "${env:IDF_PATH}/../openocd-esp32"
+            },
+            "args": [
+                "bin/openocd",
+                "-s",
+                "share/openocd/scripts",
+                "-f",
+                "interface/ftdi/esp32_devkitj_v1.cfg",
+                "-f",
+                "board/esp-wroom-32.cfg"
+            ],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            }
+        },
+        {
+            "label": "make app-flash",
+            "type": "shell",
+            "command": "make",
+            "args": [
+                "app-flash",
+                "ESPPORT=/dev/ttyUSB?"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "upload (any)",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "${env:IDF_PATH}/components/esptool_py/esptool/esptool.py",
+                "--chip",
+                "esp32",
+                "--baud",
+                "921600",
+                "--before",
+                "default_reset",
+                "--after",
+                "hard_reset",
+                "write_flash",
+                "-z",
+                "--flash_mode",
+                "dio",
+                "--flash_freq",
+                "40m",
+                "--flash_size",
+                "detect",
+                "0xe000",
+                "${workspaceRoot}/build/ota_data_initial.bin",
+                "0x1000",
+                "${workspaceRoot}/build/bootloader/bootloader.bin",
+                "0x10000",
+                "${workspaceRoot}/build/rmt_sender.bin",
+                "0x8000",
+                "${workspaceRoot}/build/partitions.bin"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ]
+        }
+    ]
+}

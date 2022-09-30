@@ -1,0 +1,24 @@
+
+[{
+    "key": "ctrl+shift+z",
+    "command": "workbench.action.tasks.runTask",
+    "args": "idf.py flash",
+    "when": "editorTextFocus"
+},
+
+{
+    "key": "ctrl+u",
+    "command": "workbench.action.tasks.runTask",
+    "args": "idf.py flash",
+    "when": "editorTextFocus"    
+},
+
+{
+    "key": "ctrl+shift+u",
+    "command": "workbench.action.tasks.runTask",
+    "args": "make flash ESPPOTT=/dev/ttyUSB1",
+    "when": "editorTextFocus"    
+}
+
+
+]

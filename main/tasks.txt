@@ -1,0 +1,45 @@
+fix mqtt alive
+
+fix - local html
+
+
+status LED: connected to WiFi, MQTT status, animation status
+
+html parameter change + save
+
+
+Checkout build parameters:
+
+Enable app rollback support (APP_ROLLBACK_ENABLE)
+unity testing?
+
+
+DMX
+
+Read configuration from file (minimal programattic patches from light show)
+Edit parameters using html page and save parameters 
+Commands (select animation / scene), edit show and scenes from html page
+
+gui flow editor
+
+Segment editing tool
+
+OtA update, live, config
+
+Is it possible to include compiled code ?
+
+WiFi communication
+
+fix the bug that caused the controller to get stuck
+
+
+
+// temporary workaround - should be fixed
+fixt the <> vs "" thing so the arduino lib will be included properly
+
+EEPROM - no need config save to file
+
+html - resources 
+
+update from html,show from web
+update program from web

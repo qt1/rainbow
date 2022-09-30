@@ -1,0 +1,38 @@
+{
+    "env": {
+        "CompilerPath": "~/.espressif/tools/xtensa-esp32-elf/esp-2021r2-8.4.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-g++",
+        "CompilerIncludes": "~/.espressif/tools/xtensa-esp32-elf/esp-2021r2-8.4.0/xtensa-esp32-elf/xtensa-esp32-elf/include"
+    },
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/main",
+                "${env:IDF_PATH}/components/**",
+                "${workspaceFolder}/components/arduino/cores/esp32/**",
+                "${workspaceFolder}/components/arduino/libraries/**",
+                "${workspaceFolder}/components/arduino/**",
+                "${CompilerIncludes}/**",
+            ],
+            "defines": [],
+            "intelliSenseMode": "linux-gcc-arm",
+            "browse": {
+                "path": [
+                    "${workspaceFolder}/main",
+                    "${env:IDF_PATH}/components",
+                    "${workspaceFolder}/components/arduino/cores/esp32/**",
+                    "${workspaceFolder}/components/arduino/libraries/**",
+                    "${workspaceFolder}/components/arduino/**",
+                    "${CompilerIncludes}"
+                ],
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": ""
+            },
+            "compilerPath": "${CompilerPath}",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "configurationProvider": "ms-vscode.cpptools"
+        }
+    ],
+    "version": 4
+}

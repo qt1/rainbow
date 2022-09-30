@@ -1,0 +1,71 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "OpenOCD Debug",
+            "type": "gdb",
+            "request": "attach",
+            "printCalls": true,
+            "executable": "${workspaceRoot}/build/rmt_sender.elf",
+            "target": ":3333",
+            "remote": true,
+            "cwd": "${workspaceRoot}",
+            "autorun": [
+                "mon reset halt",
+                "flushregs",
+                "thb app_main",
+                "break setup",
+                "set remote hardware-watchpoint-limit 2",
+                "c"
+            ],
+            // target remote :3333
+            // set remote hardware-watchpoint-limit 2
+            // mon reset halt
+            // flushregs
+            // thb app_main
+            // c
+            "gdbpath": "${env:IDF_PATH}/../xtensa-esp32-elf/bin/xtensa-esp32-elf-gdb"
+        },
+        {
+            "name": "file - index.html",
+            "type": "firefox",
+            "request": "launch",
+            "reAttach": true,
+            "file": "${workspaceFolder}/main/index.html",
+            "profileDir": "/home/baruch/snap/firefox/common/.mozilla/firefox/cw2fzr6w.Debug",
+            "pathMappings": [
+                {
+                    "url": "${workspaceFolder}/main/index.html",
+                    "path": "${workspaceFolder}/main/index.html"
+                }
+            ],
+        },
+        {
+            "name": "http://10.23.25.114",
+            "type": "firefox",
+            "request": "launch",
+            "reAttach": true,
+            "url": "http://10.23.25.114",
+            //            "profile": "Debug",
+            "profileDir": "/home/baruch/snap/firefox/common/.mozilla/firefox/cw2fzr6w.Debug",
+            "webRoot": "${workspaceFolder}/main",
+            "pathMappings": [
+                {
+                    "url": "/index.html",
+                    "path": "${workspaceFolder}/main/index.html"
+                }
+            ],
+
+        },
+    ]
+}
