@@ -22,7 +22,7 @@ class HX711_driver {
         this->ck = ck;
         this->dat = dat;
         pinMode(ck, OUTPUT);
-        pinMode(dat, INPUT);
+        pinMode(dat, INPUT_PULLUP);
     }
 
     // read data synchronous 1us per clock
